@@ -34,6 +34,18 @@ class MyArray {
     delete this.data[this.length - 1];
     this.length--;
   }
+
+  unshift(item) {
+    if (item) {
+      for (let i = this.length; i > 0; i--) {
+        this.data[i] = this.data[i - 1];
+      }
+      this.data[0] = item;
+      this.length++;
+    }
+
+    return this.length;
+  }
 }
 
 const myArray = new MyArray();
@@ -49,4 +61,6 @@ console.log(myArray.get(3));
 const deletedItem = myArray.pop();
 console.log("Deleted " + deletedItem);
 myArray.delete(1);
+console.log(myArray.data);
+myArray.unshift("first");
 console.log(myArray.data);
