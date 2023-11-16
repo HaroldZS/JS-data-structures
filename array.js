@@ -46,6 +46,20 @@ class MyArray {
 
     return this.length;
   }
+
+  shift() {
+    const firstItem = this.data[0];
+
+    if (firstItem) {
+      for (let i = 1; i < this.length; i++) {
+        this.data[i - 1] = this.data[i];
+      }
+      delete this.data[this.length - 1];
+      this.length--;
+    }
+
+    return firstItem;
+  }
 }
 
 const myArray = new MyArray();
@@ -63,4 +77,6 @@ console.log("Deleted " + deletedItem);
 myArray.delete(1);
 console.log(myArray.data);
 myArray.unshift("first");
+console.log(myArray.data);
+myArray.shift();
 console.log(myArray.data);
