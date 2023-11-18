@@ -19,9 +19,23 @@ class HashTable {
     this.data[address].push([key, value]);
     return this.data;
   }
+
+  get(key) {
+    const address = this.hashMethod(key);
+    const currentBucket = this.data[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) {
+          return currentBucket[i][1];
+        }
+      }
+    }
+    return undefined;
+  }
 }
 
 const myHashTable = new HashTable(50);
 myHashTable.set("Harold", 1998);
 myHashTable.set("Diego", 1990);
 console.log(myHashTable.set("Alejandra", 2000));
+console.log(myHashTable.get("Harold"));
