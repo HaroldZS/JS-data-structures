@@ -32,6 +32,34 @@ class HashTable {
     }
     return undefined;
   }
+
+  delete(key) {
+    const address = this.hashMethod(key);
+    const currentBucket = this.data[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) {
+          const item = currentBucket[i];
+          currentBucket.splice(i, 1);
+          return item;
+        }
+      }
+    }
+    return undefined;
+  }
+
+  getAllKeys() {
+    const keys = [];
+    for (let i = 0; i < this.data.length; i++) {
+      const currentBucket = this.data[i];
+      if (currentBucket) {
+        for (let j = 0; j < currentBucket.length; j++) {
+          keys.push(currentBucket[j][0]);
+        }
+      }
+    }
+    return keys;
+  }
 }
 
 const myHashTable = new HashTable(50);
@@ -39,3 +67,5 @@ myHashTable.set("Harold", 1998);
 myHashTable.set("Diego", 1990);
 console.log(myHashTable.set("Alejandra", 2000));
 console.log(myHashTable.get("Harold"));
+console.log(myHashTable.delete("Alejandra"));
+console.log(myHashTable.getAllKeys());
