@@ -49,7 +49,11 @@ class MySinglyLinkedList {
       return this.prepend(value);
     }
 
-    if (index >= this.length || index < 0) {
+    if (index === this.length) {
+      return this.append(value);
+    }
+
+    if (index > this.length || index < 0) {
       return undefined;
     }
 
@@ -77,6 +81,32 @@ class MySinglyLinkedList {
 
     return current;
   }
+
+  delete(index) {
+    if (index >= this.length || index < 0) {
+      return undefined;
+    }
+
+    let deleted;
+
+    if (index === 0) {
+      deleted = this.head;
+      this.head = this.head.next;
+      if (this.length === 1) {
+        this.tail = null;
+      }
+    } else {
+      const prev = this.getNodeByIndex(index - 1);
+      deleted = prev.next;
+      prev.next = deleted.next;
+      if (index === this.length - 1) {
+        this.tail = prev;
+      }
+    }
+
+    this.length--;
+    return deleted;
+  }
 }
 
 let myLinkedList = new MySinglyLinkedList(1);
@@ -85,3 +115,20 @@ console.log(myLinkedList.append(3));
 console.log(myLinkedList.prepend(0));
 console.log(myLinkedList.insert(2, 5));
 console.log(myLinkedList.getNodeByIndex(2));
+console.log(myLinkedList.delete(4));
+console.log(myLinkedList.getNodeByIndex(3));
+console.log(myLinkedList);
+console.log(myLinkedList.append(9));
+console.log(myLinkedList.getNodeByIndex(4));
+console.log(myLinkedList.insert(4, 8));
+console.log(myLinkedList.getNodeByIndex(4));
+console.log(myLinkedList.getNodeByIndex(5));
+console.log(myLinkedList.insert(6, 13));
+console.log(myLinkedList.getNodeByIndex(6));
+console.log(myLinkedList.insert(6, 12));
+console.log(myLinkedList.delete(0));
+console.log(myLinkedList.getNodeByIndex(0));
+console.log(myLinkedList);
+console.log(myLinkedList.delete(6));
+console.log(myLinkedList.getNodeByIndex(5));
+console.log(myLinkedList);
