@@ -30,7 +30,19 @@ class MyQueue {
     return this;
   }
 
-  dequeue() {}
+  dequeue() {
+    const deleted = this.first;
+
+    if (deleted) {
+      this.first = this.first.next;
+      this.length--;
+      if (this.length === 0) {
+        this.last = null;
+      }
+    }
+
+    return deleted;
+  }
 }
 
 const myQueue = new MyQueue();
@@ -38,3 +50,11 @@ console.log(myQueue.enqueue(1));
 console.log(myQueue.enqueue(2));
 console.log(myQueue.enqueue(3));
 console.log(myQueue.peek());
+console.log(myQueue.dequeue());
+console.log(myQueue);
+console.log(myQueue.dequeue());
+console.log(myQueue);
+console.log(myQueue.dequeue());
+console.log(myQueue);
+console.log(myQueue.dequeue());
+console.log(myQueue);
