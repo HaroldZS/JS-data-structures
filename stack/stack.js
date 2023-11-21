@@ -29,6 +29,22 @@ class MyStack {
     this.length++;
     return this;
   }
+
+  pop() {
+    if (this.length === 0) {
+        return undefined;
+    }
+
+    const deleted = this.top;
+    this.top = this.top.next;
+    this.length--;
+
+    if (!this.top) {
+      this.bottom = null;
+    }
+
+    return deleted;
+  }
 }
 
 const myStack = new MyStack();
@@ -36,3 +52,7 @@ console.log(myStack.push(1));
 console.log(myStack.push(2));
 console.log(myStack.push(3));
 console.log(myStack.peek(3));
+console.log(myStack.pop());
+console.log(myStack);
+console.log(myStack.pop());
+console.log(myStack);
