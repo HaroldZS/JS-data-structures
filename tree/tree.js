@@ -83,6 +83,30 @@ class MyBinarySearchTree {
       }
     }
   }
+
+  searchRecursively(value, node = this.root) {
+    if (!this.root) {
+      return undefined;
+    }
+
+    if (value === node.value) {
+      return node;
+    } else {
+      if (value < node.value) {
+        if (!node.left) {
+          return undefined;
+        } else {
+          return this.searchRecursively(value, node.left);
+        }
+      } else {
+        if (!node.right) {
+          return undefined;
+        } else {
+          return this.searchRecursively(value, node.right);
+        }
+      }
+    }
+  }
 }
 
 const myBinarySearchTree = new MyBinarySearchTree();
@@ -101,3 +125,4 @@ console.log(myBinarySearchTree.insertRecursively(8));
 console.log(myBinarySearchTree.insertRecursively(17));
 console.log(myBinarySearchTree.insertRecursively(170));
 console.log(myBinarySearchTree.search(4));
+console.log(myBinarySearchTree.search(20));
